@@ -1,0 +1,62 @@
+.form {
+    max-width: 332px;
+    padding: 24px;
+    background: $white-color;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+    @media (max-width: 991.98px) {
+        max-width: 300px;
+    }
+    &__label {
+        margin-bottom: 4px;
+        position: relative;
+        display: block;
+        font-size: 10px;
+        color: $form-label-color;
+        span {
+            position: absolute;
+            top: 0;
+            left: auto;
+            width: 4px;
+            height: 4px;
+            border-radius: 4px;
+            background: $pink-color;
+        }
+    }
+    &__input {
+        margin-bottom: 16px;
+        width: 284px;
+        height: 36px;
+        @include form-area;
+        @media (max-width: 991.98px) {
+            width: 252px;
+        }
+    }
+    & input:last-of-type {
+        margin-bottom: 24px;
+    }
+    &__textarea {
+        margin-bottom: 16px;
+        width: 284px;
+        height: 108px;
+        @include form-area;
+        resize: none;
+        @media (max-width: 991.98px) {
+            width: 252px;
+        }
+    }
+    &__btn {
+        display: block;
+        margin: 0 auto;
+        width: 284px;
+        height: 36px; 
+        @media (max-width: 991.98px) {
+            width: 252px;
+        }
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
