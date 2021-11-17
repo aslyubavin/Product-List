@@ -537,9 +537,13 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
   border: none;
   outline: none;
-  cursor: pointer;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   color: #B4B4B4;
+}
+.btn_active {
+  cursor: pointer;
+  background: #7BAE73;
+  color: #fff;
 }

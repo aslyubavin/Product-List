@@ -2,6 +2,48 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/activeBtn.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/activeBtn.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function activeBtn(form) {
+    const inputs = form.querySelectorAll('input'),
+        btn = form.querySelector('button');
+
+    function checkFilledInput() {
+        let res = true;
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.length === 0) {
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('change', () => {
+            if (checkFilledInput()) {
+                btn.classList.add('btn_active');
+            } else {
+                if (btn.classList.contains('btn_active')) {
+                    btn.classList.remove('btn_active');
+                }
+            }
+        });
+    });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (activeBtn);
+
+/***/ }),
+
 /***/ "./src/js/modules/addPhoto.js":
 /*!************************************!*\
   !*** ./src/js/modules/addPhoto.js ***!
@@ -113,11 +155,12 @@ function formSubmit(form, list, emptyBlock) {
     const inputName = form.querySelector('#name'),
         inputDescr = form.querySelector('#descr'),
         inputLink = form.querySelector('#link'),
-        inputPrice = form.querySelector('#price');
+        inputPrice = form.querySelector('#price'),
+        btn = form.querySelector('button');
   
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        function checkRequiredValue(input) {
+        function checkRequiredInput(input) {
             const messageSelector = form.querySelector(`[data-message="${input.id}"]`);
             if (input.value.length === 0) {
                 messageSelector.innerText = 'Поле является обязательным';
@@ -127,8 +170,10 @@ function formSubmit(form, list, emptyBlock) {
                 return true;
             }
         }
-        if (checkRequiredValue(inputName) && checkRequiredValue(inputLink) && checkRequiredValue(inputPrice) && (0,_addPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(form, inputName.value, inputDescr.value, inputLink.value, inputPrice.value)) {
+
+        if (checkRequiredInput(inputName) && checkRequiredInput(inputLink) && checkRequiredInput(inputPrice) && (0,_addPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(form, inputName.value, inputDescr.value, inputLink.value, inputPrice.value)) {
             (0,_renderPhoto__WEBPACK_IMPORTED_MODULE_1__["default"])(inputName.value, inputDescr.value, inputLink.value, inputPrice.value, list, emptyBlock);
+            btn.classList.remove('btn_active');
             form.reset();
         } else {
             return false;
@@ -240,10 +285,12 @@ var __webpack_exports__ = {};
   \**************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_renderPhoto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/renderPhoto */ "./src/js/modules/renderPhoto.js");
-/* harmony import */ var _modules_addPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addPhoto */ "./src/js/modules/addPhoto.js");
-/* harmony import */ var _modules_deletePhoto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/deletePhoto */ "./src/js/modules/deletePhoto.js");
-/* harmony import */ var _modules_formSubmit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/formSubmit */ "./src/js/modules/formSubmit.js");
-/* harmony import */ var _modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/firstRenderPhoto */ "./src/js/modules/firstRenderPhoto.js");
+/* harmony import */ var _modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/firstRenderPhoto */ "./src/js/modules/firstRenderPhoto.js");
+/* harmony import */ var _modules_addPhoto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addPhoto */ "./src/js/modules/addPhoto.js");
+/* harmony import */ var _modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/deletePhoto */ "./src/js/modules/deletePhoto.js");
+/* harmony import */ var _modules_formSubmit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/formSubmit */ "./src/js/modules/formSubmit.js");
+/* harmony import */ var _modules_activeBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/activeBtn */ "./src/js/modules/activeBtn.js");
+
 
 
 
@@ -257,9 +304,10 @@ window.addEventListener('DOMContentLoaded', () => {
         list = document.querySelector('.list'),
         emptyBlock = document.querySelector('.main__empty');
 
-    (0,_modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_4__["default"])(list, emptyBlock);
-    (0,_modules_formSubmit__WEBPACK_IMPORTED_MODULE_3__["default"])(form, list, emptyBlock);
-    (0,_modules_deletePhoto__WEBPACK_IMPORTED_MODULE_2__["default"])(list, emptyBlock);
+    (0,_modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_1__["default"])(list, emptyBlock);
+    (0,_modules_formSubmit__WEBPACK_IMPORTED_MODULE_4__["default"])(form, list, emptyBlock);
+    (0,_modules_activeBtn__WEBPACK_IMPORTED_MODULE_5__["default"])(form);
+    (0,_modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__["default"])(list, emptyBlock);
 });
 })();
 
