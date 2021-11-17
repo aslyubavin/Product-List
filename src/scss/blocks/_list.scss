@@ -1,31 +1,79 @@
+@keyframes display {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .list {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 16px;
+    @media(max-width: 767.98px) {
+        justify-content: center;
+    }
     &__item {
-        flex: 0 1 33.3333%;
-        max-width: 332px;
+        position: relative;
+        width: 332px;
         min-height: 423px;
         display: flex;
         flex-direction: column;
         background: $white-color;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
         border-radius: 4px;
+        animation: display 0.6s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+            span {
+                transform: translate(8px, -8px);
+                opacity: 1;
+            }
+        }
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            width: 32px;
+            height: 32px;
+            opacity: 0;
+            font-size: 16px;
+            color: #fff;
+            background: $pink-color;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
         @media(max-width: 1395.98px) {
-            flex: 0 1 265px;
+            width: 265px;
         }
         @media(max-width: 1199.98px) {
-            flex: 0 1 300px;
+            width: 300px;
+            span {
+                transform: translate(8px, -8px);
+                opacity: 1;
+            }
+            &:hover {
+                transform: none;
+            }
         }
         @media(max-width: 991.98px) {
-            flex: 0 1 208px;
+            width: 208px;
         }
         @media(max-width: 767.98px) {
-            flex: 0 1 270px;
+            width: 270px;
         }
         @media(max-width: 575.98px) {
-            flex: 0 1 300px;
+            width: 300px;
         }
     }
     &__photo {
@@ -66,9 +114,11 @@
         justify-content: flex-start;
     }
     &__name {
+        width: 100%;
         margin-bottom: 16px;
         font-size: 20px;
         font-weight: 600;
+        word-break: break-all;
         @media(max-width: 991.98px) {
             font-size: 18px;
         }
@@ -80,6 +130,7 @@
         flex: 1 0 auto;
         margin-bottom: 32px;
         font-size: 16px;
+        word-break: break-all;
         @media(max-width: 991.98px) {
             font-size: 14px;
         }
@@ -90,6 +141,7 @@
     &__price {
         font-size: 24px;
         font-weight: 600;
+        word-break: break-all;
         @media(max-width: 991.98px) {
             font-size: 22px;
         }

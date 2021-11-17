@@ -24,16 +24,12 @@
         }
     }
     &__input {
-        margin-bottom: 16px;
         width: 284px;
         height: 36px;
         @include form-area;
         @media (max-width: 991.98px) {
             width: 252px;
         }
-    }
-    & input:last-of-type {
-        margin-bottom: 24px;
     }
     &__textarea {
         margin-bottom: 16px;
@@ -47,12 +43,18 @@
     }
     &__btn {
         display: block;
-        margin: 0 auto;
+        margin: 16px auto 0 auto;
         width: 284px;
         height: 36px; 
         @media (max-width: 991.98px) {
             width: 252px;
         }
+    }
+    &__message {
+        margin: 8px 0px;
+        display: flex;
+        font-size: 8px;
+        color: $pink-color;
     }
 }
 

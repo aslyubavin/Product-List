@@ -19,4 +19,12 @@
     &__list {
         flex-basis: 100%;
     }
+    &__empty {
+        width: 100%;
+        margin-top: 100px;
+        text-align: center;
+        font-size: 38px;
+        letter-spacing: 2px;
+        color: rgba($color: $pink-color, $alpha: 0.3);
+    }
 }
