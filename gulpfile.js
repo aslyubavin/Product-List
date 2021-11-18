@@ -32,7 +32,8 @@ let {src,dest} = require ('gulp'),
     clean_css = require("gulp-clean-css");
     rename = require("gulp-rename");
     uglify = require("gulp-uglify-es").default;
-    imagemin = require ("gulp-imagemin");
+    imagemin = require ("gulp-imagemin"),
+    ghPages = require("gulp-gh-pages");
 /*     ttf2woff = require ("gulp-ttf2woff");
     ttf2woff2 = require ("gulp-ttf2woff2");
     fonter = require ("gulp-fonter"); */
@@ -121,6 +122,11 @@ function images() {
         .pipe(ttf2woff2())
         .pipe(dest(path.build.fonts))
 } */
+
+gulp.task('deploy', function () {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
+});
 
 let build = gulp.parallel(js, css, html, images, /* fonts */);
 let watch = gulp.parallel(build, watchFiles, browserSync);
