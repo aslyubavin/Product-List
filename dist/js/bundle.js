@@ -28,7 +28,7 @@ function activeBtn(form) {
     }
 
     inputs.forEach(input => {
-        input.addEventListener('change', () => {
+        input.addEventListener('input', () => {
             if (checkFilledInput()) {
                 btn.classList.add('btn_active');
             } else {
@@ -185,6 +185,43 @@ function formSubmit(form, list, emptyBlock) {
 
 /***/ }),
 
+/***/ "./src/js/modules/openFullPhoto.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/openFullPhoto.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function openFullPhoto(list) {
+    const fullPhoto = document.querySelector('.full-photo');
+
+    list.addEventListener('click', (e) => {
+        if (e.target.matches('img')) {
+            fullPhoto.querySelector('img').src = e.target.src;
+            fullPhoto.classList.add('full-photo_active');
+        }
+    });
+
+    fullPhoto.addEventListener('click', (e) => {
+        if (e.target.matches('.full-photo') || e.target.matches('.full-photo__close')) {
+            fullPhoto.classList.remove('full-photo_active');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Escape' && fullPhoto.classList.contains('full-photo_active')) {
+            fullPhoto.classList.remove('full-photo_active');
+        }
+    });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (openFullPhoto);
+
+/***/ }),
+
 /***/ "./src/js/modules/renderPhoto.js":
 /*!***************************************!*\
   !*** ./src/js/modules/renderPhoto.js ***!
@@ -284,13 +321,11 @@ var __webpack_exports__ = {};
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_renderPhoto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/renderPhoto */ "./src/js/modules/renderPhoto.js");
-/* harmony import */ var _modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/firstRenderPhoto */ "./src/js/modules/firstRenderPhoto.js");
-/* harmony import */ var _modules_addPhoto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addPhoto */ "./src/js/modules/addPhoto.js");
+/* harmony import */ var _modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/firstRenderPhoto */ "./src/js/modules/firstRenderPhoto.js");
+/* harmony import */ var _modules_formSubmit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/formSubmit */ "./src/js/modules/formSubmit.js");
+/* harmony import */ var _modules_activeBtn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/activeBtn */ "./src/js/modules/activeBtn.js");
 /* harmony import */ var _modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/deletePhoto */ "./src/js/modules/deletePhoto.js");
-/* harmony import */ var _modules_formSubmit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/formSubmit */ "./src/js/modules/formSubmit.js");
-/* harmony import */ var _modules_activeBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/activeBtn */ "./src/js/modules/activeBtn.js");
-
+/* harmony import */ var _modules_openFullPhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/openFullPhoto */ "./src/js/modules/openFullPhoto.js");
 
 
 
@@ -304,10 +339,11 @@ window.addEventListener('DOMContentLoaded', () => {
         list = document.querySelector('.list'),
         emptyBlock = document.querySelector('.main__empty');
 
-    (0,_modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_1__["default"])(list, emptyBlock);
-    (0,_modules_formSubmit__WEBPACK_IMPORTED_MODULE_4__["default"])(form, list, emptyBlock);
-    (0,_modules_activeBtn__WEBPACK_IMPORTED_MODULE_5__["default"])(form);
+    (0,_modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(list, emptyBlock);
+    (0,_modules_formSubmit__WEBPACK_IMPORTED_MODULE_1__["default"])(form, list, emptyBlock);
+    (0,_modules_activeBtn__WEBPACK_IMPORTED_MODULE_2__["default"])(form);
     (0,_modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__["default"])(list, emptyBlock);
+    (0,_modules_openFullPhoto__WEBPACK_IMPORTED_MODULE_4__["default"])(list);
 });
 })();
 

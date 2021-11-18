@@ -14,7 +14,7 @@ function activeBtn(form) {
     }
 
     inputs.forEach(input => {
-        input.addEventListener('change', () => {
+        input.addEventListener('input', () => {
             if (checkFilledInput()) {
                 btn.classList.add('btn_active');
             } else {
