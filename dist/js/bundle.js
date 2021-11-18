@@ -122,9 +122,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function firstRenderPhoto(list, emptyBlock) {
     const data = localStorage;
-    if (Object.keys(data).length !== 0) {
-        emptyBlock.style.display = 'none';
-
+    if (Object.keys(data).length === 0) {
+        emptyBlock.style.display = 'block';
+    } else {
         Object.keys(data).forEach(name => {
             const unit = JSON.parse(localStorage.getItem(name));
             (0,_renderPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(name, unit.descr, unit.link, unit.price, list, emptyBlock);
@@ -256,6 +256,99 @@ function renderPhoto(name, descr, link, price, list, emptyBlock) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderPhoto);
 
+/***/ }),
+
+/***/ "./src/js/modules/sortPhoto.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/sortPhoto.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _renderPhoto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderPhoto */ "./src/js/modules/renderPhoto.js");
+
+
+function sortPhoto(select, list, emptyBlock) {
+    select.addEventListener('change', (e) => {
+        const data = [];
+        Object.keys({...localStorage}).forEach(item => {
+            let obj = {[item]: JSON.parse({...localStorage}[item])};
+            data.push(obj);
+        });
+    
+        switch(e.target.value) {
+            case 'price-min': 
+                sortByMinPrice(data);
+                renderSortedList(data)
+                break;
+            case 'price-max': 
+                sortByMaxPrice(data);
+                renderSortedList(data)
+                break;
+            case 'name': 
+                sortByName(data);
+                renderSortedList(data)
+                break;
+            case 'default': 
+                renderSortedList(data)
+        }
+    });
+
+    function sortByMinPrice(data) {
+        data.sort((a, b) => {
+            let nameA = Object.keys(a)[0];
+            let nameB = Object.keys(b)[0];
+            if (+a[nameA].price > +b[nameB].price) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        return data;
+    }
+
+    function sortByMaxPrice(data) {
+        data.sort((a, b) => {
+            let nameA = Object.keys(a)[0];
+            let nameB = Object.keys(b)[0];
+            if (+a[nameA].price < +b[nameB].price) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        return data;
+    }
+
+    function sortByName(data) {
+        data.sort((a, b) => {
+            let nameA = Object.keys(a)[0];
+            let nameB = Object.keys(b)[0];
+            if (nameA.toLowerCase() > nameB.toLowerCase()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        return data;
+    }
+
+    function renderSortedList(data) {
+        if (data.length !== 0) {
+            list.innerHTML = ``;
+            data.forEach(item => {
+                let key = Object.keys(item)[0];
+                (0,_renderPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(key, item[key].descr, item[key].link, item[key].price, list, emptyBlock);
+            });
+        }
+    }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sortPhoto);
+
 /***/ })
 
 /******/ 	});
@@ -326,6 +419,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_activeBtn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/activeBtn */ "./src/js/modules/activeBtn.js");
 /* harmony import */ var _modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/deletePhoto */ "./src/js/modules/deletePhoto.js");
 /* harmony import */ var _modules_openFullPhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/openFullPhoto */ "./src/js/modules/openFullPhoto.js");
+/* harmony import */ var _modules_sortPhoto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sortPhoto */ "./src/js/modules/sortPhoto.js");
+
 
 
 
@@ -337,13 +432,16 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.form'),
         list = document.querySelector('.list'),
-        emptyBlock = document.querySelector('.main__empty');
+        emptyBlock = document.querySelector('.main__empty'),
+        select = document.querySelector('.header__select');
 
     (0,_modules_firstRenderPhoto__WEBPACK_IMPORTED_MODULE_0__["default"])(list, emptyBlock);
     (0,_modules_formSubmit__WEBPACK_IMPORTED_MODULE_1__["default"])(form, list, emptyBlock);
     (0,_modules_activeBtn__WEBPACK_IMPORTED_MODULE_2__["default"])(form);
     (0,_modules_deletePhoto__WEBPACK_IMPORTED_MODULE_3__["default"])(list, emptyBlock);
     (0,_modules_openFullPhoto__WEBPACK_IMPORTED_MODULE_4__["default"])(list);
+    (0,_modules_openFullPhoto__WEBPACK_IMPORTED_MODULE_4__["default"])(list);
+    (0,_modules_sortPhoto__WEBPACK_IMPORTED_MODULE_5__["default"])(select, list, emptyBlock);
 });
 })();
 

@@ -143,8 +143,10 @@ body {
       flex-basis: 100%;
 }
 .main__empty {
+  display: none;
   width: 100%;
   margin-top: 100px;
+  margin-right: 300px;
   text-align: center;
   font-size: 38px;
   letter-spacing: 2px;
