@@ -5,8 +5,8 @@ https://aslyubavin.github.io/Product-List/
 ### Форма
 Для добавления товара необходимо заполнить форму. Поля "Имя", "Ссылка", "Цена" - обязательные, форма не отправится, пока данные поля пустые. При заполнении всех обязательных полей кнопка становится активной для добавления товара в список.
 
-<img src="form1.png" width="150" height="200" />
-<img src="form2.png" width="150" height="200" />
+<img src="readme/form1.png" width="150" height="200" />
+<img src="readme/form2.png" width="150" height="200" />
 
 ### Список товаров
 Список формируется путем добавления новых товаров через форму.
@@ -16,8 +16,8 @@ https://aslyubavin.github.io/Product-List/
 - При наведении курсора мыши на товар появляется иконка удаления данного товара (на малых разрешениях экрана иконка активна всегда). 
 - При клике на изображение товара открывается полное изображение.
 
-<img src="item1.png" width="200" height="132" />
-<img src="item2.png" width="200" height="132" />
+<img src="readme/item1.png" width="200" height="132" />
+<img src="readme/item2.png" width="200" height="132" />
 
 ### Сортировка
 Меню сортировки позволяет сортировать товары в списке:
@@ -26,4 +26,4 @@ https://aslyubavin.github.io/Product-List/
 - по наименованию;
 - дефолтное значение;
 
-<img src="sort.png" width="200" height="132" />
+<img src="readme/sort.png" width="200" height="132" />
